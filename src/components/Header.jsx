@@ -1,88 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  AppBar, 
-  Toolbar, 
-  Button, 
-  Box, 
-  Container, 
-  Avatar, 
-  useMediaQuery,
-  useTheme
-} from '@mui/material';
-import { styled } from '@mui/material/styles';
-import { motion } from 'framer-motion';
-import Typewriter from 'typewriter-effect';
-
-import profileImage from '../assets/me-new.png';
-import CV from '../assets/my_cv_sunil.pdf';
-
-const StyledAppBar = styled(AppBar)(({ theme }) => ({
-  background: 'transparent',
-  boxShadow: 'none',
-}));
-
-const GlassBox = styled(Box)(({ theme }) => ({
-  backdropFilter: 'blur(20px)',
-  borderRadius: theme.shape.borderRadius,
-  padding: theme.spacing(3),
-  boxShadow: '0 8px 32px 0 rgba(255, 255, 255, 0.1)',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
-  transition: 'transform 0.3s ease-in-out',
-  '&:hover': {
-    transform: 'scale(1.02)',
-    boxShadow: '0 8px 32px 0 rgba(255, 255, 255, 0.2)',
-  },
-}));
-
-const StyledButton = styled(Button)(({ theme }) => ({
-  borderRadius: '4px',
-  padding: '8px 20px',
-  fontWeight: 'bold',
-  textTransform: 'none',
-  fontFamily: "'Fira Code', monospace",
-  transition: 'all 0.3s ease-in-out',
-  color: 'white',
-  borderColor: 'rgba(255, 255, 255, 0.5)',
-  '&:hover': {
-    transform: 'translateY(-3px)',
-    boxShadow: '0 4px 20px rgba(255, 255, 255, 0.25)',
-    borderColor: 'white',
-  },
-}));
-
-const AnimatedAvatar = styled(motion(Avatar))(({ theme }) => ({
-  width: 150,
-  height: 150,
-  border: '4px solid rgba(255, 255, 255, 0.2)',
-  boxShadow: '0 8px 32px 0 rgba(255, 255, 255, 0.1)',
-  transition: 'all 0.3s ease-in-out',
-  filter: 'grayscale(100%) brightness(1.1) contrast(1.1)',
-  '&:hover': {
-    border: '4px solid rgba(255, 255, 255, 0.5)',
-    transform: 'scale(1.05) rotate(5deg)',
-    boxShadow: '0 8px 32px 0 rgba(255, 255, 255, 0.2)',
-    filter: 'grayscale(40%) brightness(1.1) contrast(1.1) saturate(1.2)',
-  },
-}));
-const CodeLine = styled(Box)(({ theme }) => ({
-  fontFamily: "'Fira Code', monospace",
-  color: 'rgba(255, 255, 255, 0.7)',
-  marginBottom: theme.spacing(1),
-  fontSize: '0.9rem',
-}));
-
-const NavButton = styled(Button)(({ theme }) => ({
-  color: '#9A9A9A',
-  margin: theme.spacing(0, 1),
-  '&:hover': {
-    background: 'rgba(255, 255, 255, 0.1)',
-  },
-}));
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Download } from "lucide-react";
+import profileImage from "../assets/me-new.png";
+import CV from "../assets/my_cv_sunil.pdf";
 
 const Header = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const img = new Image();
@@ -90,102 +14,117 @@ const Header = () => {
     img.onload = () => setImageLoaded(true);
   }, []);
 
-  const scrollToSection = (sectionId) => {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
-    }
+  const navItems = ["About", "Skills", "Projects", "Contact"];
+
+  const scrollToSection = (section) => {
+    document
+      .getElementById(section.toLowerCase())
+      ?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <>
-      <StyledAppBar position="fixed">
-        <Toolbar sx={{ justifyContent: 'center' }}>
-          <NavButton onClick={() => scrollToSection('about')}>About</NavButton>
-          <NavButton onClick={() => scrollToSection('skills')}>Skills</NavButton>
-          <NavButton onClick={() => scrollToSection('projects')}>Projects</NavButton>
-          <NavButton onClick={() => scrollToSection('contacts')}>Contact</NavButton>
-        </Toolbar>
-      </StyledAppBar>
-      <Box 
-        id="home" 
-        sx={{ 
-          display: 'flex', 
-          flexDirection: 'column', 
-          justifyContent: 'center', 
-          alignItems: 'center',
-          position: 'relative',
-          overflow: 'hidden',
-          py: 8,
-          mt: 8,
-        }}
-      >
-        <Container maxWidth="md" sx={{ position: 'relative', zIndex: 2 }}>
-          <motion.div
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            style={{ display: 'flex', justifyContent: 'center', marginBottom: theme.spacing(4) }}
-          >
-            {imageLoaded && (
-              <AnimatedAvatar
-                src={profileImage}
-                alt="Paul Lakandri"
-                whileHover={{ scale: 1.05, rotate: 5 }}
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-              />
-            )}
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <GlassBox>
-              <CodeLine>const developer = {`{`}</CodeLine>
-              <CodeLine sx={{ ml: 2 }}>name: <span style={{ color: '#4CAF50' }}>"Paul Lakandri"</span>,</CodeLine>
-              <CodeLine sx={{ ml: 2 }}>title: <span style={{ color: '#2196F3' }}>
-                <Typewriter
-                  options={{
-                    strings: ['"Software Developer Undergraduate"', '"Full Stack Developer"', '"Graphic Designer"'],
-                    autoStart: true,
-                    loop: true,
-                    delay: 50,
-                    deleteSpeed: 25,
-                    wrapperClassName: 'typewriter-wrapper',
-                  }}
-                />
-              </span>,
-              </CodeLine>
-              <CodeLine sx={{ ml: 2 }}>passion: <span style={{ color: '#FFC107' }}>"Creating innovative solutions"</span>,</CodeLine>
-              <CodeLine>{`}`};</CodeLine>
-              <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center' }}>
-                <StyledButton 
-                  variant="contained" 
-                  href={CV} 
-                  download 
-                  size="small"
-                  sx={{ mr: 2, backgroundColor: 'rgba(255, 255, 255, 0.1)', '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.2)' } }}
-                >
-                  Download CV
-                </StyledButton>
-                <StyledButton 
-                  variant="outlined" 
-                  onClick={() => scrollToSection('contacts')}
-                  size="small"
-                >
-                  Contact Me
-                </StyledButton>
-              </Box>
-            </GlassBox>
-          </motion.div>
-        </Container>
-      </Box>
-    </>
+    <div className="relative bg-black">
+      {/* Animated grid background */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-md border-b border-white/5">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex justify-center py-4">
+            {navItems.map((item) => (
+              <button
+                key={item}
+                onClick={() => scrollToSection(item)}
+                className={`px-4 py-1.5 mx-2 text-sm rounded-lg transition-all duration-300 
+                  ${
+                    activeSection === item.toLowerCase()
+                      ? "text-white bg-white/10"
+                      : "text-gray-400 hover:text-white hover:bg-white/5"
+                  }`}
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+        </div>
+      </nav>
+
+      {/* Main content */}
+      <div className="relative pt-24 pb-16">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="grid md:grid-cols-5 gap-8 items-center">
+            {/* Profile Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="md:col-span-2"
+            >
+              <div className="relative mx-auto w-48 h-48">
+                <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent rounded-full blur-xl animate-pulse" />
+                <div className="group relative w-full h-full rounded-full overflow-hidden border-2 border-white/10 transition-transform duration-300 hover:scale-105">
+                  <img
+                    src={profileImage}
+                    alt="Paul Lakandri"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Text Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="md:col-span-3 space-y-4"
+            >
+              <div className="p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">
+                <div className="font-mono text-sm text-gray-400">
+                  <div>const developer = {"{"}</div>
+                  <div className="pl-4">
+                    name: <span className="text-white">"Paul Lakandri"</span>,
+                  </div>
+                  <div className="pl-4">
+                    title:{" "}
+                    <span className="text-white">"Full Stack Developer"</span>,
+                  </div>
+                  <div className="pl-4">
+                    passion:{" "}
+                    <span className="text-white">
+                      "Creating innovative solutions"
+                    </span>
+                  </div>
+                  <div>{"};"}</div>
+                </div>
+
+                <div className="flex gap-4 mt-6">
+                  <a
+                    href={CV}
+                    download
+                    className="group flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 transition-all duration-300"
+                  >
+                    <Download
+                      size={16}
+                      className="text-gray-400 group-hover:text-white"
+                    />
+                    <span className="text-sm text-gray-400 group-hover:text-white">
+                      Download CV
+                    </span>
+                  </a>
+                  <button
+                    onClick={() => scrollToSection("contact")}
+                    className="px-4 py-2 text-sm rounded-lg bg-white text-black hover:bg-gray-200 transition-colors duration-300"
+                  >
+                    Contact Me
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
-}
+};
 
 export default Header;

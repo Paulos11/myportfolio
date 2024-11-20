@@ -1,186 +1,204 @@
-import React, { useRef,useState  } from 'react';
+import React, { useRef, useState } from "react";
+import { motion } from "framer-motion";
 import {
-  Box,
-  Container,
-  Typography,
-  Grid,
-  TextField,
-  Button,
-  Link,CircularProgress ,
-  Paper
-} from '@mui/material';
-import { styled } from '@mui/material/styles';
-import { Email, LinkedIn, GitHub } from '@mui/icons-material';
-import { motion } from 'framer-motion';
-import emailjs from 'emailjs-com';
+  Mail,
+  Linkedin,
+  Github,
+  Send,
+  Loader2,
+  CheckCircle,
+} from "lucide-react";
+import emailjs from "emailjs-com";
 
-const GlassBox = styled(Paper)(({ theme }) => ({
-  backdropFilter: 'blur(20px)',
-  background: 'transparent',
-  borderRadius: theme.shape.borderRadius,
-  padding: theme.spacing(2),
-  boxShadow: '0 8px 32px 0 rgba(255, 255, 255, 0.1)',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
-  transition: 'transform 0.3s ease-in-out',
-  '&:hover': {
-    transform: 'scale(1.02)',
-    boxShadow: '0 8px 32px 0 rgba(255, 255, 255, 0.2)',
-  },
-  height: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-}));
-
-const SectionTitle = styled(Typography)(({ theme }) => ({
-  fontFamily: "'Fira Code', monospace",
-  color: 'white',
-  marginBottom: theme.spacing(2),
-  fontWeight: 'bold',
-}));
-
-const CompactText = styled(Typography)(({ theme }) => ({
-  fontSize: '0.9rem',
-  lineHeight: 1.4,
-}));
-
-const ContactOption = ({ icon, title, value, href }) => (
-  <Box display="flex" alignItems="center" mb={1}>
-    <Box sx={{ mr: 1, color: '#9A9A9A' }}>{icon}</Box>
-    <Link href={href} target="_blank" rel="noopener noreferrer" color="inherit">
-      <CompactText color="#9A9A9A">{value}</CompactText>
-    </Link>
-  </Box>
+const ContactCard = ({ icon: Icon, label, value, href }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="group flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors duration-300"
+  >
+    <div className="p-2 rounded-lg bg-white/5 text-gray-400 group-hover:text-white group-hover:scale-110 transition-all duration-300">
+      <Icon size={20} />
+    </div>
+    <div className="flex flex-col">
+      <span className="text-sm text-gray-400">{label}</span>
+      <span className="text-sm text-white">{value}</span>
+    </div>
+  </a>
 );
+
+const FormInput = ({ label, type = "text", name, rows, required = true }) => (
+  <div className="space-y-1">
+    <label className="block text-sm text-gray-400">{label}</label>
+    {rows ? (
+      <textarea
+        name={name}
+        rows={rows}
+        required={required}
+        className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-white/20 focus:ring-1 focus:ring-white/20 transition-colors duration-300"
+      />
+    ) : (
+      <input
+        type={type}
+        name={name}
+        required={required}
+        className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-white/20 focus:ring-1 focus:ring-white/20 transition-colors duration-300"
+      />
+    )}
+  </div>
+);
+
 const Contacts = () => {
   const form = useRef();
   const [isLoading, setIsLoading] = useState(false);
   const [isSent, setIsSent] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    emailjs.sendForm('service_ebu3n3n', 'template_sg2v4gk', form.current, 'g0FaxBbhS0oqgItbN')
-      .then((result) => {
-        console.log('SUCCESS!', result.status, result.text);
-        setIsSent(true);
-        setIsLoading(false);
-        e.target.reset();
-      }, (error) => {
-        console.error('FAILED...', error);
-        alert('Failed to send message. Error: ' + error.text);
-        setIsLoading(false);
-      });
+    setError(null);
+
+    emailjs
+      .sendForm(
+        "service_ebu3n3n",
+        "template_sg2v4gk",
+        form.current,
+        "g0FaxBbhS0oqgItbN"
+      )
+      .then(
+        (result) => {
+          console.log("SUCCESS!", result.status, result.text);
+          setIsSent(true);
+          setIsLoading(false);
+          e.target.reset();
+        },
+        (error) => {
+          console.error("FAILED...", error);
+          setError("Failed to send message. Please try again later.");
+          setIsLoading(false);
+        }
+      );
   };
+
+  const contactMethods = [
+    {
+      icon: Mail,
+      label: "Email",
+      value: "paul.lakandri50@gmail.com",
+      href: "mailto:paul.lakandri50@gmail.com",
+    },
+    {
+      icon: Linkedin,
+      label: "LinkedIn",
+      value: "Sunil Lakandri",
+      href: "https://www.linkedin.com/in/sunil-lakandri-1543a7193/",
+    },
+    {
+      icon: Github,
+      label: "GitHub",
+      value: "@Paulos11",
+      href: "https://github.com/Paulos11",
+    },
+  ];
+
   return (
-    <Box 
-      component={motion.section}
-      id="contacts"
-      sx={{ py: 4 }}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <Container maxWidth="lg">
-        <SectionTitle variant="h5" textAlign="center" mb={2}>
-          Contact Me
-        </SectionTitle>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={4}>
-            <GlassBox>
-              <CompactText color="#9A9A9A" mb={2}>
-                Let's work together on your project, collaborate within companies, or explore any technology. I'm excited to bring your ideas to life!
-              </CompactText>
-              <ContactOption 
-                icon={<Email />}
-                value="paul.lakandri50@gmail.com"
-                href="mailto:paul.lakandri50@gmail.com"
-              />
-              <ContactOption 
-                icon={<LinkedIn />}
-                value="LinkedIn Profile"
-                href="https://www.linkedin.com/in/sunil-lakandri-1543a7193/"
-              />
-              <ContactOption 
-                icon={<GitHub />}
-                value="GitHub Profile"
-                href="https://github.com/Paulos11"
-              />
-            </GlassBox>
-          </Grid>
-          <Grid item xs={12} md={8}>
-            <GlassBox component="form" ref={form} onSubmit={handleSubmit}>
-              {isSent ? (
-                <Box textAlign="center" py={4}>
-                  <Typography variant="h6" color="#9A9A9A" gutterBottom>
-                    Thank you for your message!
-                  </Typography>
-                  <Typography color="#9A9A9A">
-                    I'll get back to you as soon as possible.
-                  </Typography>
-                </Box>
-              ) : (
-                <Grid container spacing={2}>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      fullWidth
-                      margin="dense"
-                      name="name"
-                      label="Your Name"
-                      required
-                      variant="outlined"
-                      InputLabelProps={{ style: { color: '#9A9A9A' } }}
-                      InputProps={{ style: { color: '#9A9A9A' } }}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      fullWidth
-                      margin="dense"
-                      name="email"
-                      label="Your Email"
-                      type="email"
-                      required
-                      variant="outlined"
-                      InputLabelProps={{ style: { color: '#9A9A9A' } }}
-                      InputProps={{ style: { color: '#9A9A9A' } }}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      margin="dense"
-                      name="message"
-                      label="Your Message"
-                      multiline
-                      rows={3}
-                      required
-                      variant="outlined"
-                      InputLabelProps={{ style: { color: '#9A9A9A' } }}
-                      InputProps={{ style: { color: '#9A9A9A' } }}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Button 
-                      type="submit" 
-                      variant="contained" 
-                      color="primary" 
-                      fullWidth
+    <div id="contact" className="relative bg-black py-16">
+      {/* Animated grid background */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+
+      <div className="max-w-5xl mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="space-y-8"
+        >
+          <h2 className="text-2xl font-mono text-white text-center">
+            Get In Touch
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Contact Info */}
+            <div className="space-y-4">
+              <p className="text-gray-400 text-sm">
+                Let's work together on your project, collaborate within
+                companies, or explore any technology. I'm excited to bring your
+                ideas to life!
+              </p>
+
+              <div className="space-y-3">
+                {contactMethods.map((method, index) => (
+                  <ContactCard key={index} {...method} />
+                ))}
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <div className="md:col-span-2">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10"
+              >
+                {isSent ? (
+                  <div className="text-center py-8">
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      className="inline-block p-3 rounded-full bg-green-500/10 text-green-400 mb-4"
+                    >
+                      <CheckCircle size={32} />
+                    </motion.div>
+                    <h3 className="text-xl text-white mb-2">Message Sent!</h3>
+                    <p className="text-gray-400">
+                      Thank you for reaching out. I'll get back to you as soon
+                      as possible.
+                    </p>
+                  </div>
+                ) : (
+                  <form
+                    ref={form}
+                    onSubmit={handleSubmit}
+                    className="space-y-4"
+                  >
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <FormInput label="Your Name" name="name" />
+                      <FormInput label="Your Email" type="email" name="email" />
+                    </div>
+
+                    <FormInput label="Your Message" name="message" rows={4} />
+
+                    {error && (
+                      <div className="text-red-400 text-sm">{error}</div>
+                    )}
+
+                    <button
+                      type="submit"
                       disabled={isLoading}
+                      className="w-full py-3 px-4 rounded-lg bg-white text-black font-medium hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-300 flex items-center justify-center gap-2"
                     >
                       {isLoading ? (
-                        <CircularProgress size={24} color="inherit" />
+                        <>
+                          <Loader2 size={20} className="animate-spin" />
+                          Sending...
+                        </>
                       ) : (
-                        'Send Message'
+                        <>
+                          <Send size={20} />
+                          Send Message
+                        </>
                       )}
-                    </Button>
-                  </Grid>
-                </Grid>
-              )}
-            </GlassBox>
-          </Grid>
-        </Grid>
-      </Container>
-    </Box>
+                    </button>
+                  </form>
+                )}
+              </motion.div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </div>
   );
 };
 
