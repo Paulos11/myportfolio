@@ -1,9 +1,15 @@
 // components/sidebar/Sidebar.tsx
+"use client";
+
 import Profile from "./Profile";
 import TechStack from "./TechStack";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { IdentityProvider, useIdentity } from "@/context/IdentityContext";
+import { Music } from "lucide-react";
 
-const Sidebar = () => {
+const SidebarContent = () => {
+  const { currentIdentity, toggleIdentity } = useIdentity();
+
   return (
     <div className="relative w-[450px] h-full bg-white border-r border-gray-200 overflow-hidden">
       {/* Tech Pattern Background */}
@@ -35,7 +41,7 @@ const Sidebar = () => {
 
       {/* Content */}
       <ScrollArea className="h-screen relative z-10">
-        <div className="px-8 py-10">
+        <div className="px-8 py-5">
           <div className="relative">
             <div className="absolute -left-6 top-1/2 w-4 h-[2px] bg-gradient-to-r from-gray-200 to-transparent" />
             <div className="absolute -right-6 top-1/2 w-4 h-[2px] bg-gradient-to-l from-gray-200 to-transparent" />
@@ -45,6 +51,23 @@ const Sidebar = () => {
           <div className="relative">
             <div className="absolute -right-6 top-6 w-4 h-[2px] bg-gradient-to-l from-gray-200 to-transparent" />
             <TechStack />
+
+            {/* Identity Switcher */}
+            <div className="mt-4 relative">
+              <div className="absolute -right-6 top-1/2 w-4 h-[2px] bg-gradient-to-l from-gray-200 to-transparent" />
+              <div className="px-4 py-3 rounded-lg bg-gradient-to-r from-purple-50/50 to-transparent border border-gray-100">
+                <p className="text-gray-600 text-sm font-medium">
+                  Wanna see me as a musician?
+                  <span
+                    onClick={toggleIdentity}
+                    className="ml-1 text-purple-500 hover:text-purple-600 cursor-pointer transition-colors inline-flex items-center gap-1"
+                  >
+                    Click here
+                    <Music className="w-3 h-3" />
+                  </span>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </ScrollArea>
@@ -52,6 +75,14 @@ const Sidebar = () => {
       {/* Overlay gradient for depth */}
       <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-white/10 via-transparent to-white/10" />
     </div>
+  );
+};
+
+const Sidebar = () => {
+  return (
+    <IdentityProvider>
+      <SidebarContent />
+    </IdentityProvider>
   );
 };
 

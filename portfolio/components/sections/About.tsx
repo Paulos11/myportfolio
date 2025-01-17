@@ -1,7 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Lightbulb, Cpu, Rocket, Download, Mail, Sparkles } from "lucide-react";
+import { Lightbulb, Cpu, Rocket, Download, Mail } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 

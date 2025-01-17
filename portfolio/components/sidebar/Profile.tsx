@@ -1,10 +1,32 @@
 // components/sidebar/Profile.tsx
 "use client";
 import Image from "next/image";
-import { Mail, Github, Linkedin, Code2 } from "lucide-react";
+import { Mail, Github, Linkedin, Code2, Music } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useIdentity } from "@/context/IdentityContext";
 
 const Profile = () => {
+  const { currentIdentity, toggleIdentity } = useIdentity();
+
+  const profileData = {
+    developer: {
+      name: "Sunil Lakandri",
+      title: "Full Stack Developer",
+      about:
+        "Passionate Full Stack Developer with 5+ years of experience in building scalable web applications using modern technologies. Specialized in creating innovative solutions with cutting-edge tools.",
+      icon: <Code2 className="w-3 h-3 text-gray-600" />,
+    },
+    musician: {
+      name: "Paul Lakandri",
+      title: "Singer & Composer",
+      about:
+        "Versatile musician crafting melodies that bridge emotions and stories. Bringing creative vision to life through original compositions and heartfelt performances.",
+      icon: <Music className="w-3 h-3 text-gray-600" />,
+    },
+  };
+
+  const current = profileData[currentIdentity];
+
   return (
     <div className="relative">
       {/* Tech-inspired decorative elements */}
@@ -20,17 +42,21 @@ const Profile = () => {
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-gray-200 via-transparent to-gray-200 animate-spin-slow" />
             <div className="relative w-28 h-28 rounded-full overflow-hidden ring-2 ring-gray-100 shadow-lg">
               <Image
-                src="/myimage.png"
-                alt="Paul Lakandri"
+                src={
+                  currentIdentity === "developer"
+                    ? "/myimage.png"
+                    : "/musician-image.png"
+                }
+                alt={current.name}
                 fill
                 className="object-cover"
                 priority
               />
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/10 to-transparent" />
             </div>
-            {/* Tech Accent */}
+            {/* Tech/Music Accent */}
             <div className="absolute -right-1 -bottom-1 w-6 h-6 bg-white rounded-full shadow-md flex items-center justify-center">
-              <Code2 className="w-3 h-3 text-gray-600" />
+              {current.icon}
             </div>
           </div>
 
@@ -38,9 +64,9 @@ const Profile = () => {
           <div className="flex-1 pt-2">
             <div className="relative">
               <h2 className="text-xl font-bold text-gray-800">
-                Sunil Lakandri
+                {current.name}
               </h2>
-              <p className="text-sm text-gray-600 mt-1">Full Stack Developer</p>
+              <p className="text-sm text-gray-600 mt-1">{current.title}</p>
               {/* Decorative line */}
               <div className="absolute -left-3 top-3 w-2 h-[2px] bg-gradient-to-r from-gray-200 to-transparent" />
             </div>
@@ -51,10 +77,7 @@ const Profile = () => {
         <div className="mt-6 relative">
           <div className="absolute -left-2 top-0 bottom-0 w-[1px] bg-gradient-to-b from-gray-200 via-transparent to-gray-200" />
           <p className="text-sm text-gray-600 leading-relaxed pl-4">
-            Passionate Full Stack Developer with 5+ years of experience in
-            building scalable web applications using modern technologies.
-            Specialized in creating innovative solutions with cutting-edge
-            tools.
+            {current.about}
           </p>
         </div>
 
@@ -86,7 +109,6 @@ const Profile = () => {
         </div>
       </div>
 
-      {/* Add custom animation for the spinning border */}
       <style jsx global>{`
         @keyframes spin-slow {
           from {

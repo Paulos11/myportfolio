@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Download, Mail } from "lucide-react";
 
@@ -11,7 +10,7 @@ export const Hero = () => {
   };
 
   return (
-    <section className="relative pt-24 py-20 flex items-center justify-center overflow-hidden">
+    <section className="relative pt-15 py-15 flex items-center justify-center overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-[#fafafa] dark:bg-gray-900">
         {/* Binary Rain Effect */}
