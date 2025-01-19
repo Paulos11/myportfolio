@@ -6,7 +6,7 @@ import { Providers } from "@/providers/identity-providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Paul Lakandri - Full Stack Developer",
+  title: "Suni/Paul Lakandri - Full Stack Developer",
   description:
     "Professional portfolio of Paul Lakandri, a Full Stack Developer specializing in creating innovative solutions.",
 };

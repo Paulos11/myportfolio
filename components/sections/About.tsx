@@ -1,6 +1,6 @@
 "use client";
 
-import { Lightbulb, Cpu, Rocket, Download, Mail } from "lucide-react";
+import { Lightbulb, Cpu, Rocket, Download, Linkedin } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -22,10 +22,6 @@ export const About = () => {
       description: "Optimizing for speed, scalability, and user experience",
     },
   ];
-
-  const scrollToContact = () => {
-    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <section className="relative py-12 pt-[130px]" id="about">
@@ -88,20 +84,25 @@ export const About = () => {
 
               {/* Action Buttons */}
               <div className="flex gap-4">
-                <a href="/my_cv.pdf" download>
+                <a href="/sunil_lakandri_cv.pdf" download>
                   <Button className="bg-gray-900 hover:bg-gray-800 text-white px-6 py-5 rounded-xl text-sm">
                     <Download className="mr-2 h-4 w-4" />
                     Download CV
                   </Button>
                 </a>
-                <Button
-                  onClick={scrollToContact}
-                  variant="outline"
-                  className="px-6 py-5 rounded-xl border-gray-300 text-sm"
+                <a
+                  href="https://www.linkedin.com/in/sunil-lakandri-1543a7193/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <Mail className="mr-2 h-4 w-4" />
-                  Contact Me
-                </Button>
+                  <Button
+                    variant="outline"
+                    className="px-6 py-5 rounded-xl border-gray-300 text-sm"
+                  >
+                    <Linkedin className="mr-2 h-4 w-4" />
+                    LinkedIn
+                  </Button>
+                </a>
               </div>
             </div>
 

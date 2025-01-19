@@ -35,7 +35,7 @@ export const Projects = () => {
       description:
         "Website to sell ebook to Learn Basic Intermediate Portuguese",
       image: "/projects/gopal.png",
-      link: "https://gopalrai.com",
+      link: "https://www.gopalrai.com/",
     },
 
     {
