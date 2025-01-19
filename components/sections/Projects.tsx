@@ -14,27 +14,36 @@ export const Projects = () => {
       image: "/projects/ecoflow.png",
       link: "https://ecoflowmalta.com",
     },
+
     {
       id: 2,
-      title: "Portuguese Learning Ebook",
-      description:
-        "Website to sell ebook to Learn Basic Intermediate Portuguese",
-      image: "/projects/gopal.png",
-      link: "https://gopalrai.com",
-    },
-    {
-      id: 3,
       title: "Dotmandu",
       description: "Dotmandu IT Solutions Website",
       image: "/projects/dotmandu.png",
       link: "https://dotmandu.com.np",
     },
     {
+      id: 3,
+      title: "Portuguese Learning Ebook",
+      description:
+        "Website to sell ebook to Learn Basic Intermediate Portuguese",
+      image: "/projects/gopal.png",
+      link: "https://gopalrai.com",
+    },
+
+    {
       id: 4,
       title: "InfiniteWeddings",
       description: "InfiniteWeddings is a wedding planning website",
       image: "/projects/infinitewedding.png",
       link: "https://theinfiniteweddings.com",
+    },
+    {
+      id: 5,
+      title: "Workshoard",
+      description: "Workshoard is a job management website",
+      image: "/worskshoard.png",
+      link: "#",
     },
   ];
 

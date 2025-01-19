@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Mail, Github, Linkedin, Code2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useIdentity } from "@/context/IdentityContext";
-import MusicianProfile from "./MusicianProfile"; // exactly this casing
+import MusicianProfile from "./MusicianProfile";
 
 const Profile = () => {
   const { currentIdentity } = useIdentity();
@@ -13,6 +13,24 @@ const Profile = () => {
   if (!isDeveloper) {
     return <MusicianProfile />;
   }
+
+  const socialLinks = [
+    {
+      icon: Mail,
+      href: "mailto:paul.lakandri50@gmail.com",
+      key: "mail",
+    },
+    {
+      icon: Github,
+      href: "https://github.com/Paulos11",
+      key: "github",
+    },
+    {
+      icon: Linkedin,
+      href: "https://www.linkedin.com/in/sunil-lakandri-1543a7193/",
+      key: "linkedin",
+    },
+  ];
 
   return (
     <div className="relative bg-white">
@@ -70,16 +88,17 @@ const Profile = () => {
         {/* Social Links with Tech Styling */}
         <div className="mt-4 flex gap-2 items-center">
           <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
-          {["mail", "github", "linkedin"].map((social) => (
+          {socialLinks.map(({ icon: Icon, href, key }) => (
             <Button
-              key={social}
+              key={key}
               variant="ghost"
               size="sm"
               className="w-8 h-8 p-0 rounded-lg hover:bg-gray-100 hover:text-gray-900 transition-colors"
+              asChild
             >
-              {social === "mail" && <Mail className="w-4 h-4" />}
-              {social === "github" && <Github className="w-4 h-4" />}
-              {social === "linkedin" && <Linkedin className="w-4 h-4" />}
+              <a href={href} target="_blank" rel="noopener noreferrer">
+                <Icon className="w-4 h-4" />
+              </a>
             </Button>
           ))}
           <div className="h-[1px] flex-1 bg-gradient-to-r from-gray-200 via-gray-200 to-transparent" />

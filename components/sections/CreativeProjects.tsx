@@ -17,9 +17,9 @@ export const CreativeProjects = () => {
     },
     {
       id: 2,
-      title: "Surya Architecture Logo",
+      title: "Flame Logo Design",
       type: "Logo Design",
-      image: "/projects/suryalogo.png",
+      image: "/projects/c2.webp",
     },
     {
       id: 3,
@@ -27,35 +27,50 @@ export const CreativeProjects = () => {
       type: "logo desgin",
       image: "/projects/artzapta.png",
     },
+
     {
       id: 4,
-      title: "Mobile App Icons",
-      type: "Icon Design",
-      image: "/",
+      title: "CVM Figma Prototype",
+      type: "Figma Design",
+      image: "/projects/cvm.png",
     },
     {
       id: 5,
-      title: "Restaurant Menu",
-      type: "Print Design",
-      image: "/creative/project5.png",
+      title: "Youtube Song Thumbnail",
+      type: "Figma Design",
+      image: "/projects/c1.webp",
     },
+
     {
       id: 6,
-      title: "Fitness Brand",
-      type: "Logo Design",
-      image: "/creative/project6.png",
+      title: "Social Media Post",
+      type: "Graphics Design",
+      image: "/projects/c3.webp",
     },
+
     {
       id: 7,
-      title: "Event Posters",
+      title: "Social Media Post",
       type: "Graphics Design",
-      image: "/creative/project7.png",
+      image: "/projects/c5.png",
     },
     {
       id: 8,
-      title: "E-commerce Icons",
-      type: "Icon Set",
-      image: "/creative/project8.png",
+      title: "Social Media Post",
+      type: "Graphics Design",
+      image: "/projects/c6.png",
+    },
+    {
+      id: 9,
+      title: "Social Media Post",
+      type: "Graphics Design",
+      image: "/projects/c7.png",
+    },
+    {
+      id: 10,
+      title: "CVM Logo Design",
+      type: "Graphics Design",
+      image: "/projects/c8.jpg",
     },
   ];
 

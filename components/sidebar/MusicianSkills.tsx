@@ -7,23 +7,21 @@ const MusicianSkills = () => {
   const images = [
     {
       src: "/m1.jpg",
-      alt: "Worship Leading",
-      category: "Praise & Worship",
+      alt: "With My Wife",
+      category: "An amazing friend",
     },
     {
       src: "/m2.jpg",
-      alt: "Studio Session",
-      category: "Recording",
+      alt: "Learning Worship",
+      category: "at The Gathering Church",
     },
     {
       src: "/m3.jpg",
-      alt: "Live Performance",
-      category: "Concert",
+      alt: "Live Worship ",
+      category: "Worship",
     },
     {
       src: "/m4.jpg",
-      alt: "Music Ministry",
-      category: "Ministry",
     },
   ];
 
