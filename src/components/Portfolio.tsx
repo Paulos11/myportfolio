@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Code, Brush, Layout, Terminal, GitBranch, Globe } from "lucide-react";
+import { Code, Brush, Layout, Terminal, GitBranch } from "lucide-react";
 
 const AboutSection = () => (
   <div id="about" className="relative bg-black">

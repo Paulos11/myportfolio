@@ -35,7 +35,7 @@ const MusicianSkills = () => {
           >
             <Image
               src={image.src}
-              alt={image.alt}
+              alt="Musician"
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-110"
             />
