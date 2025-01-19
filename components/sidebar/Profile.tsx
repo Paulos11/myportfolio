@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Mail, Github, Linkedin, Code2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useIdentity } from "@/context/IdentityContext";
-import MusicianProfile from "./MusicianProfile";
+import MusicianProfile from "./MusiciansProfile";
 
 const Profile = () => {
   const { currentIdentity } = useIdentity();
