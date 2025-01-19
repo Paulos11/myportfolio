@@ -9,6 +9,13 @@ export const Projects = () => {
   const projects = [
     {
       id: 1,
+      title: "The Gathering Church",
+      description: "The Gathering Church Website",
+      image: "/projects/image.png",
+      link: "https://thegathering-sepia.vercel.app/",
+    },
+    {
+      id: 2,
       title: "Eco Flow Malta",
       description: "EcoFlow Authorized Distributor Malta Website",
       image: "/projects/ecoflow.png",
@@ -16,14 +23,14 @@ export const Projects = () => {
     },
 
     {
-      id: 2,
+      id: 3,
       title: "Dotmandu",
       description: "Dotmandu IT Solutions Website",
       image: "/projects/dotmandu.png",
       link: "https://dotmandu.com.np",
     },
     {
-      id: 3,
+      id: 4,
       title: "Portuguese Learning Ebook",
       description:
         "Website to sell ebook to Learn Basic Intermediate Portuguese",
@@ -32,14 +39,14 @@ export const Projects = () => {
     },
 
     {
-      id: 4,
+      id: 5,
       title: "InfiniteWeddings",
       description: "InfiniteWeddings is a wedding planning website",
       image: "/projects/infinitewedding.png",
       link: "https://theinfiniteweddings.com",
     },
     {
-      id: 5,
+      id: 6,
       title: "Workshoard",
       description: "Workshoard is a job management website",
       image: "/worskshoard.png",

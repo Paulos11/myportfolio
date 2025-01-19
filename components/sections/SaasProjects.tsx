@@ -2,10 +2,10 @@
 
 import React, { useState } from "react";
 import {
-  Cloud,
-  Code2,
-  Users,
-  BarChart3,
+  Image,
+  Plane,
+  Church,
+  Presentation,
   ExternalLink,
   LucideIcon,
 } from "lucide-react";
@@ -99,39 +99,39 @@ export const SaasProjects = () => {
   const projects: Project[] = [
     {
       id: 1,
-      title: "Project Management Suite",
+      title: "Aafno Album",
       description:
-        "Enterprise-grade project management platform with real-time collaboration.",
+        "Photo album app for storing and sharing your memories with friends and family.",
       techStack: "Next.js • tRPC • PostgreSQL",
-      demoUrl: "https://demo.projectsuite.com",
-      icon: Code2,
+      demoUrl: "https://aafnoalbum.com",
+      icon: Image,
     },
     {
       id: 2,
-      title: "Team Analytics Dashboard",
+      title: "Travel Management System (Work in Progress)",
       description:
-        "Comprehensive analytics platform for measuring team performance metrics.",
+        "Travel management platform for managing travel expenses and bookings.",
       techStack: "React • Redux • Node.js",
-      demoUrl: "https://demo.teamanalytics.com",
-      icon: BarChart3,
+      demoUrl: "#",
+      icon: Plane,
     },
     {
       id: 3,
-      title: "HR Management System",
+      title: "Church Management System (Work in Progress)",
       description:
-        "Modern HR platform for managing employee data and performance.",
-      techStack: "Vue.js • Express • MySQL",
-      demoUrl: "https://demo.hrmsystem.com",
-      icon: Users,
+        "Church management platform for managing members, donations, and events.",
+      techStack: "Next.js • Express • MongoDB",
+      demoUrl: "#",
+      icon: Church,
     },
     {
       id: 4,
-      title: "Cloud Integration Platform",
+      title: "PPT Management System (Work in Progress)",
       description:
-        "Seamless integration platform connecting various cloud services.",
-      techStack: "Next.js • GraphQL • AWS",
-      demoUrl: "https://demo.cloudintegration.com",
-      icon: Cloud,
+        "PowerPoint management platform for managing and sharing presentations.",
+      techStack: "Next.js • GraphQL • Wabasi",
+      demoUrl: "#",
+      icon: Presentation,
     },
   ];
 
