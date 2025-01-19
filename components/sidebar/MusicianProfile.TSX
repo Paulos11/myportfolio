@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { Mail, Github, Linkedin, Music } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
 const MusicianProfile = () => {
   return (
