@@ -14,7 +14,7 @@ const Sidebar = () => {
   return (
     <div
       className={cn(
-        "relative w-[320px] lg:w-[450px] h-full border-r overflow-hidden",
+        "relative w-[340px] lg:w-[450px] h-full border-r overflow-hidden",
         isDeveloper
           ? "bg-white border-gray-200"
           : "bg-[#323232] border-zinc-800"

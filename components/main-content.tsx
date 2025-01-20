@@ -11,23 +11,25 @@ import MusicianSection from "@/components/sections/MusicianSection";
 import { useIdentity } from "@/context/IdentityContext";
 
 export function MainContent() {
-  const { currentIdentity } = useIdentity(); // Removed unused toggleIdentity
+  const { currentIdentity } = useIdentity();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-      {currentIdentity === "developer" ? (
-        <>
-          <About />
-          <ExperienceSection />
-          <SaasProjects />
-          <Projects />
-          <CreativeProjects />
-          <ContactSection />
-          <Footer />
-        </>
-      ) : (
-        <MusicianSection />
-      )}
+    <div className="min-h-screen w-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 overflow-x-hidden">
+      <div className="w-full max-w-[100vw]">
+        {currentIdentity === "developer" ? (
+          <>
+            <About />
+            <ExperienceSection />
+            <SaasProjects />
+            <Projects />
+            <CreativeProjects />
+            <ContactSection />
+            <Footer />
+          </>
+        ) : (
+          <MusicianSection />
+        )}
+      </div>
     </div>
   );
 }
