@@ -67,7 +67,7 @@ export default function Home() {
         className={cn(
           "flex-1 w-full transition-all duration-300 ease-in-out overflow-x-hidden",
           "lg:ml-[450px]",
-          "pt-16 lg:pt-0 px-4 lg:px-6"
+          "pt-16 lg:pt-0"
         )}
       >
         <MainContent />
