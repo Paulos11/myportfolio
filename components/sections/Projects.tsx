@@ -59,6 +59,13 @@ export const Projects = () => {
       image: "/projects/c13.png",
       link: "tudumart.com",
     },
+    {
+      id: 8,
+      title: "Himalayan Yatra",
+      description: "Travel and Tour Website",
+      image: "/projects/c14.png",
+      link: "hhttps://himalayanyatranp.com/",
+    },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
