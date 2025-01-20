@@ -52,6 +52,13 @@ export const Projects = () => {
       image: "/worskshoard.png",
       link: "#",
     },
+    {
+      id: 7,
+      title: "Tudumart",
+      description: "E-commerce website ",
+      image: "/projects/c13.png",
+      link: "tudumart.com",
+    },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);

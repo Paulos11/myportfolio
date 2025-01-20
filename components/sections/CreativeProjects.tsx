@@ -10,6 +10,18 @@ export const CreativeProjects = () => {
 
   const projects = [
     {
+      id: 12,
+      title: " Social Media Design",
+      type: "Graphics Design",
+      image: "/projects/c10.png",
+    },
+    {
+      id: 11,
+      title: " Thumbnail Design",
+      type: "Graphics Design",
+      image: "/projects/c9.webp",
+    },
+    {
       id: 1,
       title: "Surya Architecture Post Design",
       type: "Graphics Design",
@@ -71,6 +83,18 @@ export const CreativeProjects = () => {
       title: "CVM Logo Design",
       type: "Graphics Design",
       image: "/projects/c8.jpg",
+    },
+    {
+      id: 13,
+      title: "Social Media Post",
+      type: "Graphics Design",
+      image: "/projects/c11.png",
+    },
+    {
+      id: 14,
+      title: "Social Media Post",
+      type: "Graphics Design",
+      image: "/projects/c12.jpg",
     },
   ];
 
